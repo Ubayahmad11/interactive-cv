@@ -89,7 +89,7 @@ onMounted(() => {
       <img
         src="/pp.webp"
         alt="Foto Profil Ahmad Baihaqi"
-        class="w-80 h-80 rounded-full object-cover shadow-xl border-4 border-white"
+        class="w-80 h-80 rounded-full object-cover shadow-xl border-4 border-white profile-img"
       />
     </div>
   </section>
@@ -108,5 +108,29 @@ onMounted(() => {
   50% {
     opacity: 0;
   }
+}
+
+/* Animasi untuk membuat gambar bergerak (getar) */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  35% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Apply shake effect to profile image */
+.profile-img {
+  animation: shake 2s ease-in-out infinite;
 }
 </style>
