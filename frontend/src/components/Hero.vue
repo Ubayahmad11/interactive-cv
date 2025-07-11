@@ -1,3 +1,47 @@
+<script setup>
+import { ref, onMounted } from 'vue'
+
+// Teks berjalan dinamis
+const roles = [
+  'Frontend Developer',
+  'UI/UX Enthusiast',
+  'Web Designer',
+  'Backend Developer',
+  'Software Engineer'
+]
+const currentTitle = ref('')
+let titleIndex = 0
+let charIndex = 0
+let typingForward = true
+
+function typeRole() {
+  const currentRole = roles[titleIndex]
+
+  if (typingForward) {
+    if (charIndex < currentRole.length) {
+      currentTitle.value += currentRole[charIndex++]
+    } else {
+      typingForward = false
+      setTimeout(typeRole, 1500)
+      return
+    }
+  } else {
+    if (charIndex > 0) {
+      currentTitle.value = currentTitle.value.slice(0, --charIndex)
+    } else {
+      typingForward = true
+      titleIndex = (titleIndex + 1) % roles.length
+    }
+  }
+
+  setTimeout(typeRole, typingForward ? 100 : 50)
+}
+
+onMounted(() => {
+  typeRole()
+})
+</script>
+
 <template>
   <section
     id="profil"
@@ -9,11 +53,19 @@
         class="text-5xl font-bold mb-4 animate-slide-in-left"
         style="animation-delay: 200ms;"
       >
-        Halo, Saya <span class="text-yellow-200">Ahmad Baihaqi</span>
+        Halo, Saya <span class="text-yellow-300">Ahmad Baihaqi</span>
       </h1>
 
+      <!-- Teks berjalan -->
       <p
-        class="text-xl mb-8 animate-slide-in-left"
+        class="text-2xl font-mono text-white h-10 mb-4 animate-slide-in-left transition-all duration-300"
+        style="animation-delay: 300ms;"
+      >
+        {{ currentTitle }}<span class="animate-pulse">|</span>
+      </p>
+
+      <p
+        class="text-xl mb-8 text-gray-100 animate-slide-in-left"
         style="animation-delay: 400ms;"
       >
         Mahasiswa Teknik Informatika yang bersemangat dalam pengembangan web dan desain antarmuka.
@@ -42,3 +94,19 @@
     </div>
   </section>
 </template>
+
+<style scoped>
+/* Cursor teks berjalan */
+.animate-pulse {
+  animation: pulse-blink 1s infinite;
+}
+
+@keyframes pulse-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+</style>

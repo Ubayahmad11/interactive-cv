@@ -11,7 +11,7 @@ const skills = [
   { name: 'Express.js', level: 'Mahir', image: '/express.png', percent: 75 },
   { name: 'PostgreSQL', level: 'Mahir', image: 'sql.png', percent: 80 },
   { name: 'GitHub', level: 'Mahir', image: '/github.png', percent: 80 },
-  { name: 'HTML5 & CSS3', level: 'Mahir', image: '/html5.png', percent: 85 },
+  { name: 'HTML5', level: 'Mahir', image: '/html5.png', percent: 85 },
   { name: 'CSS3', level: 'Mahir', image: 'css3.png', percent: 90 },
 ];
 
